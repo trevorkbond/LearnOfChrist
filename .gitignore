@@ -1,1 +1,2 @@
-/scraping/final_raw_data.json
+/scraping/*
+!/scraping/*.py
