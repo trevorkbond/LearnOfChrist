@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
 
 // Define the Todo type
