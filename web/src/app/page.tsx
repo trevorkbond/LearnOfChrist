@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+// @ts-ignore
 import confetti from "canvas-confetti";
 
 export default function Home() {
