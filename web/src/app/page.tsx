@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-// @ts-expect-error
+// @ts-expect-error because this is temporary
 import confetti from "canvas-confetti";
 
 export default function Home() {
