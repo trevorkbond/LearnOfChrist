@@ -1,2 +1,2 @@
 /scraping/*
-!/scraping/*.py
+!/scraping/scrape-topical-guide.py
