@@ -78,7 +78,7 @@ export default function Home() {
           </div>
         ) : (
           <p className="text-lg text-white text-center">
-            Yay! I can't wait, cutie!
+            Yay! I can&apos;t wait, cutie!
           </p>
         )}
       </main>
