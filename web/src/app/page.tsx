@@ -166,49 +166,6 @@ export default function Home() {
           )}
         </ul>
       </main>
-
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://supabase.com/docs"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Supabase Docs
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/docs"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Next.js Docs
-        </a>
-      </footer>
-
-      {/* Add this style tag for the shake animation */}
-      <style jsx>{`
-        @keyframes shake {
-          0% {
-            transform: translateX(0);
-          }
-          25% {
-            transform: translateX(-5px);
-          }
-          50% {
-            transform: translateX(5px);
-          }
-          75% {
-            transform: translateX(-5px);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
-        .animate-shake {
-          animation: shake 0.3s ease-in-out;
-        }
-      `}</style>
     </div>
   );
 }
