@@ -2,12 +2,6 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import "./globals.css";
 
-export const metadata = {
-  title: "Learn of Christ",
-  description: "A Progressive Web App built with Next.js",
-  manifest: "/manifest.webmanifest",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -16,6 +10,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="apple-icon-180.png" />
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
