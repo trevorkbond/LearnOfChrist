@@ -1,6 +1,6 @@
 "use client";
 
-import { Icon, LucideIcon } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { createElement } from "react";
@@ -12,12 +12,12 @@ interface Props {
 
 const FooterNav = (props: Props) => {
   const pathName = usePathname();
-  const isActive = props.href === pathName;
+  const isActive = pathName.includes(props.href);
 
   return (
     <Link
       href={props.href}
-      className={`p-2 transition-colors ${
+      className={`p-2 transition-colors cursor-pointer ${
         isActive ? "text-black" : "text-gray-500 hover:text-black"
       }`}
     >
