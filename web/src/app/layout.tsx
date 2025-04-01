@@ -14,6 +14,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="apple-icon-180.png" />
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
 
         <link
           rel="apple-touch-startup-image"
@@ -206,7 +210,7 @@ export default function RootLayout({
           media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
         />
       </head>
-      <body className="flex flex-col min-h-screen">
+      <body className="flex flex-col min-h-screen safe-area">
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
