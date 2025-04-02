@@ -1,6 +1,45 @@
-import { login, signup } from "./actions";
+"use client";
 
-export default function LoginPage() {
+import React, { useState } from "react";
+import { login, signup } from "./actions";
+import toast from "react-hot-toast";
+import Button from "@/components/Button/Button";
+
+export interface AuthResult {
+  success: boolean;
+  message: string;
+}
+
+type AuthAction = (formData: FormData) => Promise<AuthResult | void>;
+
+export default function LoginPage(): React.ReactElement {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const handleAuth = async (
+    formData: FormData,
+    authAction: AuthAction
+  ): Promise<void> => {
+    setIsLoading(true);
+    const result = await authAction(formData);
+    setIsLoading(false);
+
+    if (result && !result.success) {
+      toast.error(result.message);
+    }
+    setIsLoading(false);
+  };
+
+  const handleSubmit = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    authAction: AuthAction
+  ): void => {
+    const form = e.currentTarget.form;
+    if (!form) return;
+
+    const formData = new FormData(form);
+    handleAuth(formData, authAction);
+  };
+
   return (
     <>
       <div className="min-h-full pt-15 px-6 py-12 lg:px-8">
@@ -9,7 +48,6 @@ export default function LoginPage() {
             Login or Sign Up
           </h2>
         </div>
-
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6">
             <div>
@@ -30,7 +68,6 @@ export default function LoginPage() {
                 />
               </div>
             </div>
-
             <div>
               <div className="flex items-center justify-between">
                 <label
@@ -51,22 +88,17 @@ export default function LoginPage() {
                 />
               </div>
             </div>
-
             <div className="flex w-full justify-between px-2 space-x-4">
-              <button
-                type="submit"
-                formAction={login}
-                className="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset"
-              >
-                Login
-              </button>
-              <button
-                type="submit"
-                formAction={signup}
-                className="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset"
-              >
-                Sign Up
-              </button>
+              <Button
+                text="Login"
+                isLoading={isLoading}
+                onClick={(event) => handleSubmit(event, login)}
+              />
+              <Button
+                text="Sign Up"
+                isLoading={isLoading}
+                onClick={(event) => handleSubmit(event, signup)}
+              />
             </div>
           </form>
         </div>

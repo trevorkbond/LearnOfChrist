@@ -1,6 +1,7 @@
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 export default function RootLayout({
   children,
@@ -214,9 +215,12 @@ export default function RootLayout({
           media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
         />
       </head>
-      <body className="flex flex-col min-h-screen safe-area">
+      <body className="flex flex-col min-h-screen">
+        <div>
+          <Toaster position="top-right" />
+        </div>
         <Header />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow mt-12">{children}</main>
         <Footer />
       </body>
     </html>
