@@ -1,4 +1,3 @@
-import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
@@ -219,8 +218,7 @@ export default function RootLayout({
         <div>
           <Toaster position="top-right" />
         </div>
-        <Header />
-        <main className="flex-grow mt-12">{children}</main>
+        <main className="flex-grow mt-8">{children}</main>
         <Footer />
       </body>
     </html>

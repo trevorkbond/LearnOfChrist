@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, ChartPie, List } from "lucide-react";
+import { BookOpen, ChartPie, List, Settings } from "lucide-react";
 import FooterNav from "./FooterNav";
 
 const Footer = () => {
@@ -9,6 +9,7 @@ const Footer = () => {
       <FooterNav href="/reference" icon={BookOpen} />
       <FooterNav href="/topic" icon={List} />
       <FooterNav href="/progress" icon={ChartPie} />
+      <FooterNav href="/settings" icon={Settings} />
     </footer>
   );
 };
