@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 bg-gray-200 px-6 pt-14 pb-3 flex flex-row justify-between">
+    <header className="sticky top-0 bg-white px-6 border-b border-black pt-[env(safe-area-inset-top)] pb-3 flex flex-row justify-between">
       <BackArrow />
       <Link href="/settings">
         <Settings color="black" />

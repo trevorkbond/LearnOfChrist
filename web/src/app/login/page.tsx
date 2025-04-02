@@ -13,6 +13,7 @@ export default function LoginPage() {
       <button type="submit" formAction={signup}>
         Sign up
       </button>
+      <h1>chicken</h1>
     </form>
   );
 }

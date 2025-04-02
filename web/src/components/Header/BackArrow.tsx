@@ -11,7 +11,8 @@ const BackArrow = () => {
   const href = isLastSlashIndex
     ? pathName.substring(0, lastSlashIndex) || "/"
     : "/";
-  const visibility = pathName === "/" ? "invisible" : "visible";
+  const visibility =
+    pathName === "/" || pathName === "/login" ? "invisible" : "visible";
 
   return (
     <Link href={href} className={`${visibility} cursor-pointer`}>
