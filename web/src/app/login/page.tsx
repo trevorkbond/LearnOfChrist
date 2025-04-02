@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { login, signup } from "./actions";
+import { login, signup } from "./loginActions";
 import toast from "react-hot-toast";
 import Button from "@/components/Button/Button";
 
