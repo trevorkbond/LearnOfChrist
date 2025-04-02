@@ -5,7 +5,7 @@ import FooterNav from "./FooterNav";
 
 const Footer = () => {
   return (
-    <footer className="sticky bottom-0 bg-gray-200 px-15 pt-6 pb-8 flex flex-row justify-between">
+    <footer className="fixed w-full bottom-0 bg-gray-200 px-15 pt-6 pb-8 flex flex-row justify-between">
       <FooterNav href="/reference" icon={BookOpen} />
       <FooterNav href="/topic" icon={List} />
       <FooterNav href="/progress" icon={ChartPie} />
