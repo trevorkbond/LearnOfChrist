@@ -14,6 +14,7 @@ type AuthAction = (formData: FormData) => Promise<AuthResult | void>;
 
 export default function LoginPage(): React.ReactElement {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoginMode, setIsLoginMode] = useState(true);
 
   const handleAuth = async (
     formData: FormData,
@@ -26,13 +27,13 @@ export default function LoginPage(): React.ReactElement {
     if (result && !result.success) {
       toast.error(result.message);
     }
-    setIsLoading(false);
   };
 
   const handleSubmit = (
     e: React.MouseEvent<HTMLButtonElement>,
     authAction: AuthAction
   ): void => {
+    e.preventDefault();
     const form = e.currentTarget.form;
     if (!form) return;
 
@@ -45,7 +46,7 @@ export default function LoginPage(): React.ReactElement {
       <div className="min-h-full pt-15 px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-            Login or Sign Up
+            {isLoginMode ? "Login" : "Sign Up"}
           </h2>
         </div>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -83,22 +84,35 @@ export default function LoginPage(): React.ReactElement {
                   name="password"
                   type="password"
                   required
-                  autoComplete="current-password"
+                  autoComplete={
+                    isLoginMode ? "current-password" : "new-password"
+                  }
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
               </div>
             </div>
-            <div className="flex w-full justify-between px-2 space-x-4">
+            <div>
               <Button
-                text="Login"
+                text={isLoginMode ? "Login" : "Sign Up"}
                 isLoading={isLoading}
-                onClick={(event) => handleSubmit(event, login)}
+                onClick={(event) =>
+                  handleSubmit(event, isLoginMode ? login : signup)
+                }
               />
-              <Button
-                text="Sign Up"
-                isLoading={isLoading}
-                onClick={(event) => handleSubmit(event, signup)}
-              />
+              <div className="text-center mt-2">
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsLoginMode(!isLoginMode);
+                  }}
+                  className="text-sm text-indigo-600 hover:text-indigo-500"
+                >
+                  {isLoginMode
+                    ? "New to Learn of Christ? Sign up"
+                    : "Already a user? Login"}
+                </a>
+              </div>
             </div>
           </form>
         </div>
