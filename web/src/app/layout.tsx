@@ -218,7 +218,7 @@ export default function RootLayout({
         <div>
           <Toaster position="top-right" />
         </div>
-        <main className="flex-grow mt-8">{children}</main>
+        <main className="flex-grow mt-8 mb-25">{children}</main>
         <Footer />
       </body>
     </html>
