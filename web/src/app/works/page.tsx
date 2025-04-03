@@ -15,5 +15,11 @@ export default async function Works() {
     content: work.work,
   }));
 
-  return <List items={worksAsListItems} prevUrl={"/works"} />;
+  return (
+    <List
+      items={worksAsListItems}
+      prevUrl={"/works"}
+      listTitle="Study by Reference"
+    />
+  );
 }

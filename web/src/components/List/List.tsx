@@ -3,13 +3,14 @@ import ListItemComponent, { ListItem } from "./ListItem";
 interface Props {
   items: ListItem[];
   prevUrl: string;
+  listTitle: string;
 }
 
 export default function List(props: Props) {
   return (
     <>
       <div className="text-center">
-        <p className="text-2xl font-bold">References</p>
+        <p className="text-2xl font-bold">{props.listTitle}</p>
       </div>
       <div className="mt-3 border-t border-t-gray-700">
         {props.items.map((item) => (
