@@ -1,16 +1,13 @@
 import List from "@/components/List/List";
 import { ListItem } from "@/components/List/ListItem";
+import { querySupabase } from "@/utils/getItems";
 import { createClient } from "@/utils/supabase/server";
 
 async function getBooks(work_id: number) {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("book")
-    .select("book, book_id")
-    .eq("work_id", work_id);
-
-  if (error) throw error;
-  return data ?? [];
+  return querySupabase("book", "book, book_id", {
+    column: "work_id",
+    value: work_id,
+  });
 }
 
 export default async function Books({
