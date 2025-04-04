@@ -4,10 +4,10 @@ import { createClient } from "@/utils/supabase/server";
 
 async function getBooks(work_id: number) {
   const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("book")
-    .select("book, book_id")
-    .eq("work_id", work_id);
+
+  const { data, error } = await supabase.rpc("get_referenced_books", {
+    work_id_param: work_id,
+  });
 
   if (error) throw error;
   return data ?? [];
