@@ -3,7 +3,6 @@ import Scripture, { ScriptureItem } from "@/components/Scripture/Scripture";
 
 async function getScriptures(reference_id: number) {
   const supabase = await createClient();
-
   const { data, error } = await supabase
     .from("reference_scripture")
     .select("scripture (scripture_id, content)")
@@ -22,6 +21,17 @@ async function getReference(reference_id: number) {
 
   if (error) throw error;
   return data[0] ?? [];
+}
+
+async function getTopics(reference_id: number) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("reference_topic")
+    .select("topic (topic_id, topic)")
+    .eq("reference_id", reference_id);
+
+  if (error) throw error;
+  return data ?? [];
 }
 
 async function getBookTitle(book_id: number) {
@@ -46,6 +56,8 @@ export default async function Scriptures({
   const bookTitle = await getBookTitle(bookIdNum);
   const reference = await getReference(referenceIdNum);
   const scriptures = await getScriptures(referenceIdNum);
+  const topics = await getTopics(referenceIdNum);
+  const concatenatedTopics = topics.map((t) => t.topic.topic).join("; ");
   const scripturesAsItems: ScriptureItem[] = [];
 
   let index = 0;
@@ -68,12 +80,9 @@ export default async function Scriptures({
             : ""}
         </p>
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center px-10">
         {scripturesAsItems.map((scripture) => (
-          <div
-            className="flex px-10 py-5 justify-between align-middle"
-            key={scripture.id}
-          >
+          <div className="py-5 text-left" key={scripture.id}>
             <Scripture
               verse={scripture.verse}
               content={scripture.content}
@@ -81,6 +90,7 @@ export default async function Scriptures({
             />
           </div>
         ))}
+        <div className="py-5 self-start">{`Topics: ${concatenatedTopics}`}</div>
       </div>
     </>
   );
