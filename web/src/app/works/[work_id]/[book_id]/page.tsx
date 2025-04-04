@@ -13,7 +13,7 @@ async function getReferences(book_id: number) {
   return data ?? [];
 }
 
-async function getWorkTitle(book_id: number) {
+async function getBookTitle(book_id: number) {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("book")
@@ -31,7 +31,7 @@ export default async function References({
 }) {
   const { book_id, work_id } = await params;
   const bookIdNum = Number(book_id);
-  const bookTitle = await getWorkTitle(bookIdNum);
+  const bookTitle = await getBookTitle(bookIdNum);
   const references = await getReferences(bookIdNum);
   const referencesAsListItems: ListItem[] = references.map((reference) => ({
     itemId: reference.reference_id,
