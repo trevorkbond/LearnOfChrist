@@ -1,9 +1,11 @@
+import Checkbox from "../Checkbox/Checkbox";
 import ListItemComponent, { ListItem } from "./ListItem";
 
 interface Props {
   items: ListItem[];
   prevUrl: string;
   listTitle: string;
+  isCheckboxList?: boolean;
 }
 
 export default function List(props: Props) {
@@ -23,6 +25,7 @@ export default function List(props: Props) {
               itemId={item.itemId}
               content={item.content}
             />
+            {props.isCheckboxList && <Checkbox reference_id={item.itemId} />}
           </div>
         ))}
       </div>

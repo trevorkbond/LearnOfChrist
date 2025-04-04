@@ -47,6 +47,7 @@ export default async function References({
       items={referencesAsListItems}
       prevUrl={`/works/${work_id}/${book_id}`}
       listTitle={bookTitle!}
+      isCheckboxList={true}
     />
   );
 }

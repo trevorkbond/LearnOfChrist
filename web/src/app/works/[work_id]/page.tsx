@@ -24,6 +24,13 @@ async function getWorkTitle(work_id: number) {
   return data[0]?.work;
 }
 
+// tell nextjs to statically generate pages for works 0 - 4
+export async function generateStaticParams() {
+  return Array.from({ length: 5 }, (_, i) => ({
+    work_id: i.toString(),
+  }));
+}
+
 export default async function Books({
   params,
 }: {

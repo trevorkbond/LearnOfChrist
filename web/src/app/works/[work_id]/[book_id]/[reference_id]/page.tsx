@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import Scripture, { ScriptureItem } from "@/components/Scripture/Scripture";
+import Checkbox from "@/components/Checkbox/Checkbox";
 
 async function getScriptures(reference_id: number) {
   const supabase = await createClient();
@@ -16,7 +17,7 @@ async function getReference(reference_id: number) {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("reference")
-    .select("chapter, start_verse, end_verse")
+    .select("reference_id, chapter, start_verse, end_verse")
     .eq("reference_id", reference_id);
 
   if (error) throw error;
@@ -80,9 +81,9 @@ export default async function Scriptures({
             : ""}
         </p>
       </div>
-      <div className="flex flex-col items-center px-10">
+      <div className="flex flex-col px-10">
         {scripturesAsItems.map((scripture) => (
-          <div className="py-5 text-left" key={scripture.id}>
+          <div className="pt-5 self-start" key={scripture.id}>
             <Scripture
               verse={scripture.verse}
               content={scripture.content}
@@ -90,7 +91,10 @@ export default async function Scriptures({
             />
           </div>
         ))}
-        <div className="py-5 self-start">{`Topics: ${concatenatedTopics}`}</div>
+        <div className="pt-5 self-start text-sm text-gray-700">{`Topics: ${concatenatedTopics}`}</div>
+        <div className="self-end pr-3">
+          <Checkbox reference_id={reference.reference_id} />
+        </div>
       </div>
     </>
   );
