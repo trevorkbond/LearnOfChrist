@@ -1,20 +1,27 @@
 import List from "@/components/List/List";
 import { ListItem } from "@/components/List/ListItem";
-import { querySupabase } from "@/utils/getItems";
+import { createClient } from "@/utils/supabase/server";
 
 async function getBooks(work_id: number) {
-  return querySupabase("book", "book, book_id", {
-    column: "work_id",
-    value: work_id,
-  });
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("book")
+    .select("book, book_id")
+    .eq("work_id", work_id);
+
+  if (error) throw error;
+  return data ?? [];
 }
 
 async function getWorkTitle(work_id: number) {
-  const data = await querySupabase("work", "work", {
-    column: "work_id",
-    value: work_id,
-  });
-  return data[0].work;
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("work")
+    .select("work")
+    .eq("work_id", work_id);
+
+  if (error) throw error;
+  return data[0]?.work;
 }
 
 export default async function Books({

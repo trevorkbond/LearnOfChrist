@@ -2,10 +2,14 @@ export const dynamic = "force-static";
 
 import List from "@/components/List/List";
 import { ListItem } from "@/components/List/ListItem";
-import { querySupabase } from "@/utils/getItems";
+import { createClient } from "@/utils/supabase/server";
 
 async function getWorks() {
-  return querySupabase("work", "work_id, work");
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("work").select("work_id, work");
+
+  if (error) throw error;
+  return data ?? [];
 }
 
 export default async function Works() {
