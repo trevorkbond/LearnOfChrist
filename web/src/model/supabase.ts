@@ -246,6 +246,29 @@ export type Database = {
         };
         Relationships: [];
       };
+      user_reference: {
+        Row: {
+          reference_id: number;
+          user_id: string;
+        };
+        Insert: {
+          reference_id: number;
+          user_id?: string;
+        };
+        Update: {
+          reference_id?: number;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "user_reference_reference_id_fkey";
+            columns: ["reference_id"];
+            isOneToOne: false;
+            referencedRelation: "reference";
+            referencedColumns: ["reference_id"];
+          }
+        ];
+      };
       work: {
         Row: {
           work: string | null;
