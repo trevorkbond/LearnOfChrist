@@ -1,27 +1,12 @@
-import { createClient } from "@/utils/supabase/server";
-
 export default async function Home() {
-  async function getNumRead() {
-    const supabase = await createClient();
-    const { count, error } = await supabase
-      .from("user_reference")
-      .select("*", { count: "exact", head: true });
-
-    if (error) throw error;
-    return count;
-  }
-
-  const numRead = await getNumRead();
-
   return (
     <>
       <div className="text-center">
-        <p className="text-2xl font-bold">Learn of Christ</p>
+        <p className="text-2xl font-bold">Welcome to Learn of Christ!</p>
       </div>
       <div className="px-10">
-        <p className="text-xl mt-8">Progress</p>
-        <p className="mt-4">
-          You have read {numRead!} of 1658 unique references
+        <p className="text-xl mt-8">
+          Select a study mode or view your progress below
         </p>
       </div>
     </>
