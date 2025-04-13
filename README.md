@@ -20,6 +20,10 @@ Here is the initial model I have in mind for keeping track of users and scriptur
 
 ![Entity relationship diagram](erd.png)
 
+Here is a very simple system architecture diagram - you will notice that it is hardly complex. My NextJS And Supabase take care of everything. There are some abstracted details due to the project being deployed on Vercel.
+
+![System diagram](simple_system_diagram.png)
+
 ## Timeline
 
 Tentative timeline for completion:
@@ -29,3 +33,9 @@ Tentative timeline for completion:
 - 4/2 - Build out frontend.
 - 4/9 - Deploy backend services to AWS lambdas, frontend to S3, CloudFront.
 - 4/16 - Wiggle room/wrapping up project.
+
+Note - after creating this initial plan I learned about free deployment options on Vercel, so I opted with that for my frontend.
+
+## Deployment
+
+This project is currently deployed as a progressive web application at [this link](https://learnofchrist.vercel.app).
