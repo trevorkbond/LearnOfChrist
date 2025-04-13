@@ -20,7 +20,7 @@ Here is the initial model I have in mind for keeping track of users and scriptur
 
 ![Entity relationship diagram](erd.png)
 
-Here is a very simple system architecture diagram - you will notice that it is hardly complex. My NextJS And Supabase take care of everything. There are some abstracted details due to the project being deployed on Vercel.
+Here is a very simple system architecture diagram - you will notice that it is hardly complex. My NextJS components and Supabase take care of everything. There are some abstracted details due to the project being deployed on Vercel.
 
 ![System diagram](simple_system_diagram.png)
 
